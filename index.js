@@ -1,12 +1,18 @@
 require("dotenv").config();
 const express = require("express");
+const cors = require("cors");
 const app = express();
-const port = 3000;
+const port = 8080;
 const nodemailer = require("nodemailer");
+
+// for No 'Access-Control-Allow-Origin' error
+app.use(cors());
 
 app.post("/", (req, res) => {
   let emailTo = req.headers.email;
   let text = req.headers.text;
+
+  text = decodeURIComponent(text);
 
   // Create a Transporter object
   let transporter = nodemailer.createTransport({
