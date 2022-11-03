@@ -8,6 +8,8 @@ Check out the live project via this __[link](https://online-shop-n0dzvtik7-demis
 
 - NodeJS
 - JavaScript
+- Nodemailer
+- Google API
 
 ---
 
