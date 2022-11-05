@@ -13,5 +13,4 @@ Check out the live project via this __[link](https://online-shop-n0dzvtik7-demis
 
 ---
 
-![Gif](https://s1.gifyu.com/images/online_shop_1.png)
 ![Gif](https://s4.gifyu.com/images/online_shop_2.png)
