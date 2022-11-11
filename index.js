@@ -12,6 +12,7 @@ app.use(cors());
 app.post("/", async (req, res) => {
   let emailTo = req.headers.email;
   let text = req.headers.text;
+  var accessToken;
 
   text = decodeURIComponent(text);
 
@@ -24,9 +25,15 @@ app.post("/", async (req, res) => {
     refresh_token: process.env.OAUTH_REFRESH_TOKEN,
   });
 
-  const accessToken = await oAuth2Client.getAccessToken();
+  try {
+    accessToken = await oAuth2Client.getAccessToken();
+  } catch (error) {
+    accessToken = 'not working';
+    console.log("accessToken error: " + error);
+  }
 
-  // Create a Transporter object
+  if (accessToken != 'not working') {
+    // Create a Transporter object
   let transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
@@ -57,6 +64,11 @@ app.post("/", async (req, res) => {
       res.json({ result: "Success", to: emailTo, message: text });
     }
   });
+  } else {
+    res.json({ result: "Error", to: emailTo, message: text });
+  }
+
+  
 });
 
 app.listen(port, () => {
